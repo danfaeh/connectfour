@@ -1,5 +1,7 @@
 body {
-  background-color: tan;
+  /*background-color: tan;*/
+  background: #000 radial-gradient(1000px 500px, #3f546b, #000);
+  margin-top: 40px;
 }
 
 h1{
@@ -7,7 +9,7 @@ h1{
   margin-top: -5px;
   margin-bottom: -10px;
   text-align: center;
-  color: white;
+  color: tan;
   text-shadow:
     3px 3px 0 #000,
    -1px -1px 0 #000,  
@@ -19,11 +21,12 @@ h1{
 h2 {
   text-align: center;
   margin-bottom: -15px;
+  color: white;
 }
 
 td {
-  height: 90px;
-  width: 90px;
+  height: 4em;
+  width: 4em;
   background: white;
   border: 1px solid black;
   float: left;
@@ -31,10 +34,10 @@ td {
 }
 
 .nav {
-  padding: 10px;
-  margin: 12px 7px;
   position: relative;
-  left: 24px;
+  width: 6em;
+  left: 106px;
+  margin: 18px 2px;
 }
 
 .black{
@@ -47,8 +50,8 @@ td {
 
 #reset{
   position: absolute;
-  top: 2em;
-  right: 35em;
+  top: 4em;
+  right: 41em;
   padding: 14px;
   background-color: lightgreen;
   color: black;
@@ -57,14 +60,14 @@ td {
 #dropBar {
   height: 60px;
   width: 740px;
-  background: black;
+  background: transparent;
   margin: 0 auto;
   margin-top: 25px;
 }
 
 #board {
-  width: 745px;
-  height: 600px;
+  width: 36em;
+  height: 31em;
   background: #FFD700;
   margin: 0 auto;
   padding: 20px;
