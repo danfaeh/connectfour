@@ -1,7 +1,20 @@
-window.onload = start;
-var player;
+window.onload = setupGame;
 
-  function start(){
+var lock = 0;
+var redWins=0;
+var blackWins=0;
+
+// Set Piece-Drop Listener
+$('#dropBar').click(function(e){
+ lock === 0 ? addPiece(e.target.id) : null;
+});
+
+// Set NewGame Listener
+$('#reset').click(function(){
+  resetGame();
+});
+
+  function setupGame(){
     createBoard();
     whoStarts();
   }
@@ -32,262 +45,114 @@ var player;
     }
   }
 
+  function resetGame(){
+    lock=0;
+    clearBoard();
+    setupGame();
+  }
+  
   function nextTurn(){
     player = turn % 2 === 1 ? 'Red' : 'Black';
     $("#playerTurn").html(player+"'s Turn");
   }
 
-  function checkWinner(){
-    if ($('.c1.r6').hasClass('black') && $('.c1.r5').hasClass('black') && $('.c1.r4').hasClass('black') && $('.c1.r3').hasClass('black')){
-      alert('black wins!');
-      clearBoard();
-      start();
+  function addPiece(col){
+    var colCounter = $('.black.'+col).length + $('.red.'+col).length;
+    var row = 6 - colCounter;
+    var player = turn % 2 === 1 ? 'red' : 'black';
+      
+      if (colCounter>5){
+        alert('That column is full. Try again.');
+      } else{
+      $('.r'+row+'.'+col).addClass(player);}
+
+    checkWinner(row,Number(col[1]),player);
+    turn ++;
+    nextTurn();
+  }
+
+  function checkWinner(row,col,player){
+    checkLeft(row,col,player);
+    checkRight(row,col,player);
+    checkDown(row,col,player);
+
+    checkUR(row,col,player);
+    checkUL(row,col,player);
+    checkDR(row,col,player);
+    checkDL(row,col,player);
+  }
+
+  function winner(player){
+    alert(player+' wins!');
+    lock = 1;
+  }
+
+function checkLeft(row,col,player){
+  if ($('.r'+row+'.c'+(col-1)+'.'+player).length>0){
+    if ($('.r'+row+'.c'+(col-2)+'.'+player).length>0){
+      if ($('.r'+row+'.c'+(col-3)+'.'+player).length>0){
+        winner(player);
+      }
     }
   }
+}
 
-  function c1listener(){
-    var c1counter = $('.black.c1').length + $('.red.c1').length;
-    var player = turn % 2 === 1 ? 'red' : 'black';
-      switch (c1counter) {
-        case 0:
-          $('.r6.c1').addClass(player);
-          break;
-        case 1:
-          $('.r5.c1').addClass(player);
-          break;
-        case 2:
-          $('.r4.c1').addClass(player);
-          break;
-        case 3:
-          $('.r3.c1').addClass(player);
-          break;
-        case 4:
-          $('.r2.c1').addClass(player);
-          break;
-        case 5:
-          $('.r1.c1').addClass(player);
-          break;
-        default :
-          alert('That column is full. Try again.');
+function checkRight(row,col,player){
+  if ($('.r'+row+'.c'+(col+1)+'.'+player).length>0){
+    if ($('.r'+row+'.c'+(col+2)+'.'+player).length>0){
+      if ($('.r'+row+'.c'+(col+3)+'.'+player).length>0){
+        winner(player);
       }
-      checkWinner();
-      turn ++;
-      nextTurn();
+    }
   }
-          $('.b1').click(function(){
-            c1listener();
-          });
+}
 
-    function c2listener(){
-    var c2counter = $('.black.c2').length + $('.red.c2').length;
-      var player = turn % 2 === 1 ? 'red' : 'black';
-      switch (c2counter) {
-        case 0:
-          $('.r6.c2').addClass(player);
-          break;
-        case 1:
-          $('.r5.c2').addClass(player);
-          break;
-        case 2:
-          $('.r4.c2').addClass(player);
-          break;
-        case 3:
-          $('.r3.c2').addClass(player);
-          break;
-        case 4:
-          $('.r2.c2').addClass(player);
-          break;
-        case 5:
-          $('.r1.c2').addClass(player);
-          break;
-        default :
-          alert('That column is full. Try again.');
+function checkDown(row,col,player){
+  if ($('.r'+(row+1)+'.c'+col+'.'+player).length>0){
+    if ($('.r'+(row+2)+'.c'+col+'.'+player).length>0){
+      if ($('.r'+(row+3)+'.c'+col+'.'+player).length>0){
+        winner(player);
       }
-      checkWinner();
-      turn ++;
-      nextTurn();
-
+    }
   }
-          $('.b2').click(function(){
-            c2listener();
-          });
+}
 
-    function c3listener(){
-    var c3counter = $('.black.c3').length + $('.red.c3').length;
-      var player = turn % 2 === 1 ? 'red' : 'black';
-      switch (c3counter) {
-        case 0:
-          $('.r6.c3').addClass(player);
-          break;
-        case 1:
-          $('.r5.c3').addClass(player);
-          break;
-        case 2:
-          $('.r4.c3').addClass(player);
-          break;
-        case 3:
-          $('.r3.c3').addClass(player);
-          break;
-        case 4:
-          $('.r2.c3').addClass(player);
-          break;
-        case 5:
-          $('.r1.c3').addClass(player);
-          break;
-        default :
-          alert('That column is full. Try again.');
+function checkUR(row,col,player){
+  if ($('.r'+(row-1)+'.c'+(col+1)+'.'+player).length>0){
+    if ($('.r'+(row-2)+'.c'+(col+2)+'.'+player).length>0){
+      if ($('.r'+(row-3)+'.c'+(col+3)+'.'+player).length>0){
+        winner(player);
       }
-      checkWinner();
-      turn ++;
-      nextTurn();
+    }
   }
-          $('.b3').click(function(){
-            c3listener();
-          });
+}
 
-    function c4listener(){
-    var c4counter = $('.black.c4').length + $('.red.c4').length;
-      var player = turn % 2 === 1 ? 'red' : 'black';
-      switch (c4counter) {
-        case 0:
-          $('.r6.c4').addClass(player);
-          break;
-        case 1:
-          $('.r5.c4').addClass(player);
-          break;
-        case 2:
-          $('.r4.c4').addClass(player);
-          break;
-        case 3:
-          $('.r3.c4').addClass(player);
-          break;
-        case 4:
-          $('.r2.c4').addClass(player);
-          break;
-        case 5:
-          $('.r1.c4').addClass(player);
-          break;
-        default :
-          alert('That column is full. Try again.');
+function checkUL(row,col,player){
+  if ($('.r'+(row-1)+'.c'+(col-1)+'.'+player).length>0){
+    if ($('.r'+(row-2)+'.c'+(col-2)+'.'+player).length>0){
+      if ($('.r'+(row-3)+'.c'+(col-3)+'.'+player).length>0){
+        winner(player);
       }
-      checkWinner();
-      turn ++;
-      nextTurn();
+    }
   }
-          $('.b4').click(function(){
-            c4listener();
-          });
+}
 
-    function c5listener(){
-    var c5counter = $('.black.c5').length + $('.red.c5').length;
-      var player = turn % 2 === 1 ? 'red' : 'black';
-      switch (c5counter) {
-        case 0:
-          $('.r6.c5').addClass(player);
-          break;
-        case 1:
-          $('.r5.c5').addClass(player);
-          break;
-        case 2:
-          $('.r4.c5').addClass(player);
-          break;
-        case 3:
-          $('.r3.c5').addClass(player);
-          break;
-        case 4:
-          $('.r2.c5').addClass(player);
-          break;
-        case 5:
-          $('.r1.c5').addClass(player);
-          break;
-        default :
-          alert('That column is full. Try again.');
+function checkDR(row,col,player){
+  if ($('.r'+(row+1)+'.c'+(col+1)+'.'+player).length>0){
+    if ($('.r'+(row+2)+'.c'+(col+2)+'.'+player).length>0){
+      if ($('.r'+(row+3)+'.c'+(col+3)+'.'+player).length>0){
+        winner(player);
       }
-      checkWinner();
-      turn ++;
-      nextTurn();
+    }
   }
-          $('.b5').click(function(){
-            c5listener();
-          });
+}
 
-    function c6listener(){
-    var c6counter = $('.black.c6').length + $('.red.c6').length;
-      var player = turn % 2 === 1 ? 'red' : 'black';
-      switch (c6counter) {
-        case 0:
-          $('.r6.c6').addClass(player);
-          break;
-        case 1:
-          $('.r5.c6').addClass(player);
-          break;
-        case 2:
-          $('.r4.c6').addClass(player);
-          break;
-        case 3:
-          $('.r3.c6').addClass(player);
-          break;
-        case 4:
-          $('.r2.c6').addClass(player);
-          break;
-        case 5:
-          $('.r1.c6').addClass(player);
-          break;
-        default :
-          alert('That column is full. Try again.');
+function checkDL(row,col,player){
+  if ($('.r'+(row+1)+'.c'+(col-1)+'.'+player).length>0){
+    if ($('.r'+(row+2)+'.c'+(col-2)+'.'+player).length>0){
+      if ($('.r'+(row+3)+'.c'+(col-3)+'.'+player).length>0){
+        winner(player);
       }
-      checkWinner();
-      turn ++;
-      nextTurn();
+    }
   }
-          $('.b6').click(function(){
-            c6listener();
-          });
-
-    function c7listener(){
-    var c7counter = $('.black.c7').length + $('.red.c7').length;
-    var player = turn % 2 === 1 ? 'red' : 'black';
-      switch (c7counter) {
-        case 0:
-          $('.r6.c7').addClass(player);
-          break;
-        case 1:
-          $('.r5.c7').addClass(player);
-          break;
-        case 2:
-          $('.r4.c7').addClass(player);
-          break;
-        case 3:
-          $('.r3.c7').addClass(player);
-          break;
-        case 4:
-          $('.r2.c7').addClass(player);
-          break;
-        case 5:
-          $('.r1.c7').addClass(player);
-          break;
-        default :
-          alert('That column is full. Try again.');
-      }
-      checkWinner();
-      turn ++;
-      nextTurn();
-  }
-      $('.b7').click(function(){
-        c7listener();
-      });
-
-      function resetButton(){
-        clearBoard();
-        start();
-      }
-      $('#reset').click(function(){
-        resetButton();
-      });
-
-
-
-
-
-
-
+}
