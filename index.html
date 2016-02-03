@@ -10,20 +10,41 @@
  
   <div id="menu1" class="menu">
       <h2 id="title">Play Connect-Four!</h2>
-      <a id="2player" href="#">Head to Head</a> 
-      <a id="1player" href="#">Vs. AI (WIP)</a>
+      <a id="human" href="#">Head to Head</a> 
+      <a id="ai" href="#">Vs. AI (WIP)</a>
   </div>
 
-  <div id="menu2" class="menu">
-      <h2 id="title">Input Player Names</h2>
-
+  <div id="menu2" class="menu2">
+      <h2 id="title">Player Names</h2>
         <form name='myform' id='myform'>
           <label for="redPlayer">Player 1 (red)</label>
           <input id="redPlayer" type="text" name="redName" autofocus>
           <br/><br/><br/>
           <label for="blackPlayer">Player 2 (black)</label>
           <input id="blackPlayer" type="text" name="blackName" />
-          <button type="submit" id="btnSubmit">Lets Play!</button>
+          <button class="btn" type="submit" id="humanSubmit">Lets Play!</button>
+        </form>
+  </div>
+
+  <div id="menu3" class="menu3">
+      <h2 id="title">Player name and AI difficulty</h2>
+        <form name='aiform' id='aiform'>
+
+          <label for="humanPlayer">Player Name</label>
+          <input id="humanPlayer" type="text" name="humanName" autofocus>
+            <br/><br/>
+          <label>AI Skill</label>
+              <br/><br/>
+          <input type="radio" class="radio" id="radio1" name="radio" value="radio">
+          <label for="radio1">nit-wit</label>
+          
+          <input type="radio" class="radio" id="radio2" name="radio" value="radio">
+          <label for="radio2">some skill</label>
+
+          <input type="radio" class="radio" id="radio3" name="radio" value="radio">
+          <label for="radio3">god!</label>
+
+          <button class="btn" type="submit" id="aiSubmit">Lets Play!</button>
         </form>
   </div>
 
@@ -43,6 +64,13 @@
       <button class="nav" id="c7">Drop Here!</button>
     </div>
     
+
+
+
+
+
+
+
     <table id="board">
       <tr id="row1">
       </tr>
@@ -58,7 +86,20 @@
       </tr>
     </table> 
 
+
+
+
+
+
+
+
+
+
+
+
+
     <button id="reset">New Game</button>
+    <button id="backToMenu">Main Menu</button>
 
     <table id='scoreBoard'>
       <tr>
@@ -75,7 +116,3 @@
 </body>
 </html>
 
-
-
-
-<!-- -->

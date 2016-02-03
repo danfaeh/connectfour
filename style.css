@@ -1,6 +1,7 @@
 body {
   background: #000 radial-gradient(1000px 500px, #3f546b, #000);
   margin-top: 40px;
+  height: 800px;
 }
 
 h1{
@@ -28,7 +29,7 @@ a{
 td {
   height: 66px;
   width: 66px;
-  background: white;
+  background: #374654;
   border: 1px solid black;
   float: left;
   margin: 3px;
@@ -66,6 +67,20 @@ label{
   background-color: red;
 }
 
+.radio{
+  color: white;
+}
+
+.btn {
+  margin: 70px auto 0 auto;
+  display: block;
+  height: 50px;
+  width: 175px;
+  background: lightgreen;
+  border: 2px solid green;
+  font-size: larger;
+}
+
 #reset{
   position: absolute;
   top: 4em;
@@ -101,7 +116,7 @@ label{
 .menu{
   width: 50em;
   height: 35em;
-  background-color: black;
+  /*background-color: ;*/
   margin: 60px auto;
 }
 
@@ -126,12 +141,11 @@ label{
   background-color: red;
 }
 
-#btnSubmit {
-  margin: 70px auto 0 auto;
-  display: block;
-  height: 50px;
-  width: 175px;
-  background: lightgreen;
-  border: 2px solid green;
-  font-size: larger;
+#backToMenu {
+  position: absolute;
+  top: 4em;
+  right: 30em;
+  padding: 14px;
+  background-color: lightgreen;
+  color: black;
 }
