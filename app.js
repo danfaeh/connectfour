@@ -1,8 +1,25 @@
-window.onload = setupGame;
+window.onload = start;
 
 var lock = 0;
 var redWins=0;
 var blackWins=0;
+
+// 2player listener
+$('#2player').click(function(){
+  $('#menu1').hide();
+  $('#menu2').show();
+  document.myform.redName.focus();
+});
+
+// Lets Play! listener
+$('#btnSubmit').click(function(e){
+  e.preventDefault();
+  $redPlayer = $('#redPlayer').val();
+  $blackPlayer = $('#blackPlayer').val();
+  $('#menu2').hide();
+  $('#game').show();
+  setupGame();
+});
 
 // Set Piece-Drop Listener
 $('#dropBar').click(function(e){
@@ -14,12 +31,25 @@ $('#reset').click(function(){
   resetGame();
 });
 
+$('tbody').on('mouseover', function(){
+  
+});
+
+  function start(){
+    $('#menu2').hide();
+    $('#game').hide();
+    $('#menu1').show();
+  }
+
   function setupGame(){
     createBoard();
     whoStarts();
   }
 
   function createBoard(){
+    $('#blackWins').html('<br/>'+$blackPlayer+' : <br/>'+blackWins);
+    $('#redWins').html('<br/>'+$redPlayer+' : <br/>'+redWins);
+
     for (i=1; i<7;i++){
       for(j=1;j<8;j++){
         $('#row'+i).append('<td class="r'+i+' c'+j+'"></td>');
@@ -37,10 +67,10 @@ $('#reset').click(function(){
 
   function whoStarts() {
     if (Math.random() > 0.5) {
-      $("#playerTurn").html("Black's Turn");
+      $("#playerTurn").html($blackPlayer+"'s Turn");
       turn = 2;
     }else {
-      $("#playerTurn").html("Red's Turn");
+      $("#playerTurn").html($redPlayer+"'s Turn");
       turn = 3;
     }
   }
@@ -50,9 +80,10 @@ $('#reset').click(function(){
     clearBoard();
     setupGame();
   }
-  
+
   function nextTurn(){
-    player = turn % 2 === 1 ? 'Red' : 'Black';
+    // if (gameType="2player"){
+    player = turn % 2 === 1 ? $redPlayer : $blackPlayer;
     $("#playerTurn").html(player+"'s Turn");
   }
 
@@ -82,77 +113,85 @@ $('#reset').click(function(){
     checkDL(row,col,player);
   }
 
-  function winner(player){
-    alert(player+' wins!');
-    lock = 1;
-  }
+    function winner(player){
+      if (player=== 'black'){
+        blackWins ++;
+        $('#blackWins').html('<br/>'+$blackPlayer+' : <br/>'+blackWins);
+        alert('Great job '+$blackPlayer+' you win!');
+      } else {
+        redWins ++;
+        $('#redWins').html('<br/>'+$redPlayer+' : <br/>'+redWins);
+        alert('Great job '+$redPlayer+' you win!');
+      }
+      lock = 1;
+    }
 
-function checkLeft(row,col,player){
-  if ($('.r'+row+'.c'+(col-1)+'.'+player).length>0){
-    if ($('.r'+row+'.c'+(col-2)+'.'+player).length>0){
-      if ($('.r'+row+'.c'+(col-3)+'.'+player).length>0){
-        winner(player);
+    function checkLeft(row,col,player){
+      if ($('.r'+row+'.c'+(col-1)+'.'+player).length>0){
+        if ($('.r'+row+'.c'+(col-2)+'.'+player).length>0){
+          if ($('.r'+row+'.c'+(col-3)+'.'+player).length>0){
+            winner(player);
+          }
+        }
       }
     }
-  }
-}
 
-function checkRight(row,col,player){
-  if ($('.r'+row+'.c'+(col+1)+'.'+player).length>0){
-    if ($('.r'+row+'.c'+(col+2)+'.'+player).length>0){
-      if ($('.r'+row+'.c'+(col+3)+'.'+player).length>0){
-        winner(player);
+    function checkRight(row,col,player){
+      if ($('.r'+row+'.c'+(col+1)+'.'+player).length>0){
+        if ($('.r'+row+'.c'+(col+2)+'.'+player).length>0){
+          if ($('.r'+row+'.c'+(col+3)+'.'+player).length>0){
+            winner(player);
+          }
+        }
       }
     }
-  }
-}
 
-function checkDown(row,col,player){
-  if ($('.r'+(row+1)+'.c'+col+'.'+player).length>0){
-    if ($('.r'+(row+2)+'.c'+col+'.'+player).length>0){
-      if ($('.r'+(row+3)+'.c'+col+'.'+player).length>0){
-        winner(player);
+    function checkDown(row,col,player){
+      if ($('.r'+(row+1)+'.c'+col+'.'+player).length>0){
+        if ($('.r'+(row+2)+'.c'+col+'.'+player).length>0){
+          if ($('.r'+(row+3)+'.c'+col+'.'+player).length>0){
+            winner(player);
+          }
+        }
       }
     }
-  }
-}
 
-function checkUR(row,col,player){
-  if ($('.r'+(row-1)+'.c'+(col+1)+'.'+player).length>0){
-    if ($('.r'+(row-2)+'.c'+(col+2)+'.'+player).length>0){
-      if ($('.r'+(row-3)+'.c'+(col+3)+'.'+player).length>0){
-        winner(player);
+    function checkUR(row,col,player){
+      if ($('.r'+(row-1)+'.c'+(col+1)+'.'+player).length>0){
+        if ($('.r'+(row-2)+'.c'+(col+2)+'.'+player).length>0){
+          if ($('.r'+(row-3)+'.c'+(col+3)+'.'+player).length>0){
+            winner(player);
+          }
+        }
       }
     }
-  }
-}
 
-function checkUL(row,col,player){
-  if ($('.r'+(row-1)+'.c'+(col-1)+'.'+player).length>0){
-    if ($('.r'+(row-2)+'.c'+(col-2)+'.'+player).length>0){
-      if ($('.r'+(row-3)+'.c'+(col-3)+'.'+player).length>0){
-        winner(player);
+    function checkUL(row,col,player){
+      if ($('.r'+(row-1)+'.c'+(col-1)+'.'+player).length>0){
+        if ($('.r'+(row-2)+'.c'+(col-2)+'.'+player).length>0){
+          if ($('.r'+(row-3)+'.c'+(col-3)+'.'+player).length>0){
+            winner(player);
+          }
+        }
       }
     }
-  }
-}
 
-function checkDR(row,col,player){
-  if ($('.r'+(row+1)+'.c'+(col+1)+'.'+player).length>0){
-    if ($('.r'+(row+2)+'.c'+(col+2)+'.'+player).length>0){
-      if ($('.r'+(row+3)+'.c'+(col+3)+'.'+player).length>0){
-        winner(player);
+    function checkDR(row,col,player){
+      if ($('.r'+(row+1)+'.c'+(col+1)+'.'+player).length>0){
+        if ($('.r'+(row+2)+'.c'+(col+2)+'.'+player).length>0){
+          if ($('.r'+(row+3)+'.c'+(col+3)+'.'+player).length>0){
+            winner(player);
+          }
+        }
       }
     }
-  }
-}
 
-function checkDL(row,col,player){
-  if ($('.r'+(row+1)+'.c'+(col-1)+'.'+player).length>0){
-    if ($('.r'+(row+2)+'.c'+(col-2)+'.'+player).length>0){
-      if ($('.r'+(row+3)+'.c'+(col-3)+'.'+player).length>0){
-        winner(player);
+    function checkDL(row,col,player){
+      if ($('.r'+(row+1)+'.c'+(col-1)+'.'+player).length>0){
+        if ($('.r'+(row+2)+'.c'+(col-2)+'.'+player).length>0){
+          if ($('.r'+(row+3)+'.c'+(col-3)+'.'+player).length>0){
+            winner(player);
+          }
+        }
       }
     }
-  }
-}

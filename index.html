@@ -7,39 +7,71 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Connect-Four</h1>
-
-  <h2 id="playerTurn"></h2>
-
-  <div id="dropBar">
-    <button class="nav" id="c1">Drop Here!</button>
-    <button class="nav" id="c2">Drop Here!</button>
-    <button class="nav" id="c3">Drop Here!</button>
-    <button class="nav" id="c4">Drop Here!</button>
-    <button class="nav" id="c5">Drop Here!</button>
-    <button class="nav" id="c6">Drop Here!</button>
-    <button class="nav" id="c7">Drop Here!</button>
+ 
+  <div id="menu1" class="menu">
+      <h2 id="title">Play Connect-Four!</h2>
+      <a id="2player" href="#">Head to Head</a> 
+      <a id="1player" href="#">Vs. AI (WIP)</a>
   </div>
-  
-  <table id="board">
-    <tr id="row1">
-    </tr>
-    <tr id="row2">
-    </tr>
-    <tr id="row3">
-    </tr>
-    <tr id="row4">
-    </tr>
-    <tr id="row5">
-    </tr>
-    <tr id="row6">
-    </tr>
-  </table> 
 
-  <button id="reset">New Game</button>
+  <div id="menu2" class="menu">
+      <h2 id="title">Input Player Names</h2>
 
-  <script src="jquery.min.js"></script>
-  <script src="app.js"></script>
+        <form name='myform' id='myform'>
+          <label for="redPlayer">Player 1 (red)</label>
+          <input id="redPlayer" type="text" name="redName" autofocus>
+          <br/><br/><br/>
+          <label for="blackPlayer">Player 2 (black)</label>
+          <input id="blackPlayer" type="text" name="blackName" />
+          <button type="submit" id="btnSubmit">Lets Play!</button>
+        </form>
+  </div>
+
+   <div id="game">
+
+    <h1>Connect-Four</h1>
+
+    <h2 id="playerTurn"></h2>
+
+    <div id="dropBar">
+      <button class="nav" id="c1">Drop Here!</button>
+      <button class="nav" id="c2">Drop Here!</button>
+      <button class="nav" id="c3">Drop Here!</button>
+      <button class="nav" id="c4">Drop Here!</button>
+      <button class="nav" id="c5">Drop Here!</button>
+      <button class="nav" id="c6">Drop Here!</button>
+      <button class="nav" id="c7">Drop Here!</button>
+    </div>
+    
+    <table id="board">
+      <tr id="row1">
+      </tr>
+      <tr id="row2">
+      </tr>
+      <tr id="row3">
+      </tr>
+      <tr id="row4">
+      </tr>
+      <tr id="row5">
+      </tr>
+      <tr id="row6">
+      </tr>
+    </table> 
+
+    <button id="reset">New Game</button>
+
+    <table id='scoreBoard'>
+      <tr>
+        <td id='redWins'></td>
+      </tr>
+      <tr>
+        <td id='blackWins'></td>
+      </tr>
+    </table>
+
+    <script src="jquery.min.js"></script>
+    <script src="app.js"></script>
+  </div>
 </body>
 </html>
 

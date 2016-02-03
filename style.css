@@ -1,5 +1,4 @@
 body {
-  /*background-color: tan;*/
   background: #000 radial-gradient(1000px 500px, #3f546b, #000);
   margin-top: 40px;
 }
@@ -18,26 +17,45 @@ h1{
     1px  1px 0 #000;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: -15px;
+a{
+  display: block;
   color: white;
+  font-size: 3em;
+  text-align: center;
+  margin: 2em 0;
 }
 
 td {
-  height: 4em;
-  width: 4em;
+  height: 66px;
+  width: 66px;
   background: white;
   border: 1px solid black;
   float: left;
   margin: 3px;
+  border-radius: 35px;
 }
+
+label{
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  margin: 0 auto 25px auto;
+  display: block;
+}
+ input{
+  height: 40px;
+  width: 125px;
+  font-size: 20px;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+ }
 
 .nav {
   position: relative;
   width: 6em;
-  left: 106px;
-  margin: 18px 2px;
+  left: 102px;
+  margin: 18px 3px;
 }
 
 .black{
@@ -71,4 +89,49 @@ td {
   background: #FFD700;
   margin: 0 auto;
   padding: 20px;
+}
+
+#scoreBoard{
+  position: relative;
+    left: 5px;
+    bottom: 335px;
+    text-align: center;
+}
+
+.menu{
+  width: 50em;
+  height: 35em;
+  background-color: black;
+  margin: 60px auto;
+}
+
+#playerTurn {
+  text-align: center;
+  margin-bottom: -15px;
+  color: white;
+}
+
+#title{
+  color: white;
+  font-size: 3em;
+  text-align: center;
+}
+
+#blackWins{
+  background-color: rgba(0,0,0,.2);
+  color: white;
+}
+
+#redWins{
+  background-color: red;
+}
+
+#btnSubmit {
+  margin: 70px auto 0 auto;
+  display: block;
+  height: 50px;
+  width: 175px;
+  background: lightgreen;
+  border: 2px solid green;
+  font-size: larger;
 }
