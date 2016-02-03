@@ -131,7 +131,6 @@ $('#backToMenu').click(function(){
       $("#playerTurn").html(player);
       $redPlayer = 'Computer';
       $blackPlayer = $humanPlayer;
-      console.log(turn);
     }else{
       player = turn % 2 === 1 ? $redPlayer : $blackPlayer;
       $("#playerTurn").html(player+"'s Turn");
@@ -139,18 +138,23 @@ $('#backToMenu').click(function(){
   }
 
   function addPiece(col){
-    var colCounter = $('.black.'+col).length + $('.red.'+col).length;
-    var row = 6 - colCounter;
-    var player = turn % 2 === 1 ? 'red' : 'black';
+      var colCounter = $('.black.'+col).length + $('.red.'+col).length;
+      var row = 6 - colCounter;
+      var player = turn % 2 === 1 ? 'red' : 'black';
 
-      if (colCounter>5){
-        alert('That column is full. Try again.');
-      } else{
-      $('.r'+row+'.'+col).addClass(player);}
+        if (colCounter>5){
+          alert('That column is full. Try again.');
+        } else{
+        $('.r'+row+'.'+col).addClass(player);}
 
-    checkWinner(row,Number(col[1]),player);
-    turn ++;
-    nextTurn();
+      checkWinner(row,Number(col[1]),player);
+      turn ++;
+      nextTurn();
+
+    if (aiLock===1){
+      console.log('computer turn');
+      setTimeout(aiMove,3000);
+    }
   }
 
   function checkWinner(row,col,player){
@@ -254,6 +258,17 @@ $('#backToMenu').click(function(){
     }
 
     function aiMove(){
-      var column = Math.round(Math.random()*7.07);
 
+
+      var aiCol = Math.ceil(Math.random()*7.07);
+      var colCounter = $('.black.c'+aiCol).length + $('.red.c'+aiCol).length;
+      var aiRow = 6 - colCounter;
+      var player = turn % 2 === 1 ? 'red' : 'black';
+
+      console.log(colCounter);
+      $('.r'+aiRow+'.c'+aiCol).addClass(player);
+
+      checkWinner(aiRow,Number(aiCol),player);
+      turn ++;
+      nextTurn();
     }
