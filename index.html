@@ -14,7 +14,7 @@
       <a id="ai" href="#">Vs. AI (WIP)</a>
   </div>
 
-  <div id="menu2" class="menu2">
+  <div id="menu2" class="menu">
       <h2 id="title">Player Names</h2>
         <form name='myform' id='myform'>
           <label for="redPlayer">Player 1 (red)</label>
@@ -26,22 +26,22 @@
         </form>
   </div>
 
-  <div id="menu3" class="menu3">
+  <div id="menu3" class="menu">
       <h2 id="title">Player name and AI difficulty</h2>
         <form name='aiform' id='aiform'>
 
           <label for="humanPlayer">Player Name</label>
           <input id="humanPlayer" type="text" name="humanName" autofocus>
             <br/><br/>
-          <label>AI Skill</label>
+          <label id='skillLabel'>AI Skill :</label>
               <br/><br/>
-          <input type="radio" class="radio" id="radio1" name="radio" value="radio">
+          <input type="radio" class="radio" id="radio1" name="radio" value="1">
           <label for="radio1">nit-wit</label>
           
-          <input type="radio" class="radio" id="radio2" name="radio" value="radio">
+          <input type="radio" class="radio" id="radio2" name="radio" value="2">
           <label for="radio2">some skill</label>
 
-          <input type="radio" class="radio" id="radio3" name="radio" value="radio">
+          <input type="radio" class="radio" id="radio3" name="radio" value="3">
           <label for="radio3">god!</label>
 
           <button class="btn" type="submit" id="aiSubmit">Lets Play!</button>
@@ -63,13 +63,6 @@
       <button class="nav" id="c6">Drop Here!</button>
       <button class="nav" id="c7">Drop Here!</button>
     </div>
-    
-
-
-
-
-
-
 
     <table id="board">
       <tr id="row1">
@@ -85,18 +78,6 @@
       <tr id="row6">
       </tr>
     </table> 
-
-
-
-
-
-
-
-
-
-
-
-
 
     <button id="reset">New Game</button>
     <button id="backToMenu">Main Menu</button>

@@ -4,6 +4,8 @@ var aiLock=0;
 var lock = 0;
 var redWins=0;
 var blackWins=0;
+var nearWin=0;
+var aiSkill=0;
 
 // human listener
 $('#human').click(function(){
@@ -22,6 +24,7 @@ $('#ai').click(function(){
 // Lets Play human! listener
 $('#humanSubmit').click(function(e){
     e.preventDefault();
+      aiLock=0;
       $redPlayer = $('#redPlayer').val();
       $blackPlayer = $('#blackPlayer').val();
       $('#menu2').hide();
@@ -34,6 +37,7 @@ $('#humanSubmit').click(function(e){
     e.preventDefault();
       aiLock=1;
       $humanPlayer = $('#humanPlayer').val();
+      aiSkill = $('input[name="radio"]:checked').val();
       $('#menu3').hide();
       $('#game').show();
       setupGame();
@@ -70,6 +74,7 @@ $('#backToMenu').click(function(){
 
   function setupGame(){
     lock=0;
+    nearWin= 0;
     createBoard();
     whoStarts();
   }
@@ -100,13 +105,8 @@ $('#backToMenu').click(function(){
 
   function whoStarts() {
     if (aiLock === 1) {
-                if (Math.random() > 0.5) {
-                  $("#playerTurn").html($humanPlayer+"'s Turn");
-                  turn = 2;
-                }else {
-                  $("#playerTurn").html("AI Thinking...");
-                  turn = 3;
-                }  
+      $("#playerTurn").html($humanPlayer+"'s Turn");
+      turn = 2;
     } else {
       if (Math.random() > 0.5) {
         $("#playerTurn").html($blackPlayer+"'s Turn");
@@ -120,6 +120,7 @@ $('#backToMenu').click(function(){
 
   function resetGame(){
     lock=0;
+    nearWin = 0;
     clearBoard();
     setupGame();
   }
@@ -127,7 +128,7 @@ $('#backToMenu').click(function(){
   function nextTurn(){
     // if (gameType="2player"){
     if (aiLock === 1) {
-      player = turn % 2 === 1 ? 'AI Thinking' : $humanPlayer +"'s Turn";
+      player = turn % 2 === 1 ? 'AI Thinking...' : $humanPlayer +"'s Turn";
       $("#playerTurn").html(player);
       $redPlayer = 'Computer';
       $blackPlayer = $humanPlayer;
@@ -151,9 +152,8 @@ $('#backToMenu').click(function(){
       turn ++;
       nextTurn();
 
-    if (aiLock===1){
-      console.log('computer turn');
-      setTimeout(aiMove,3000);
+    if (aiLock===1 && lock ===0){
+      setTimeout(aiMove(row,Number(col[1]),player),2000);
     }
   }
 
@@ -169,27 +169,32 @@ $('#backToMenu').click(function(){
   }
 
     function winner(player){
-      if (player=== 'black'){
-        blackWins ++;
-          $('#blackWins').html('<br/>'+$blackPlayer+' : <br/>'+blackWins);
-          alert('Great job '+$blackPlayer+' you win!');
-      } else {
-        redWins ++;
+      // if (aiThink===1){
+      //   console.log('aithink');
+      // }     
 
-        if (aiLock===1) {
-          $('#redWins').html('<br/>AI : <br/>'+redWins);
-          alert('<Computer> "You didnt see that coming!?!? Silly human..."');
-        }else{
-        $('#redWins').html('<br/>'+$redPlayer+' : <br/>'+redWins);
-        alert('Great job '+$redPlayer+' you win!');
+        if (player=== 'black'){
+          blackWins ++;
+            $('#blackWins').html('<br/>'+$blackPlayer+' : <br/>'+blackWins);
+            alert('Great job '+$blackPlayer+' you win!');
+        } else {
+          redWins ++;
+
+          if (aiLock===1) {
+            $('#redWins').html('<br/>AI : <br/>'+redWins);
+            alert('<Computer> "You didnt see that coming!?!? Silly human..."');
+          }else{
+          $('#redWins').html('<br/>'+$redPlayer+' : <br/>'+redWins);
+          alert('Great job '+$redPlayer+' you win!');
+          }
         }
-      }
-      lock = 1;
+        lock = 1;
     }
 
     function checkLeft(row,col,player){
       if ($('.r'+row+'.c'+(col-1)+'.'+player).length>0){
         if ($('.r'+row+'.c'+(col-2)+'.'+player).length>0){
+          nearWin = 1;
           if ($('.r'+row+'.c'+(col-3)+'.'+player).length>0){
             winner(player);
           }
@@ -200,6 +205,7 @@ $('#backToMenu').click(function(){
     function checkRight(row,col,player){
       if ($('.r'+row+'.c'+(col+1)+'.'+player).length>0){
         if ($('.r'+row+'.c'+(col+2)+'.'+player).length>0){
+          nearWin = 3;
           if ($('.r'+row+'.c'+(col+3)+'.'+player).length>0){
             winner(player);
           }
@@ -210,6 +216,7 @@ $('#backToMenu').click(function(){
     function checkDown(row,col,player){
       if ($('.r'+(row+1)+'.c'+col+'.'+player).length>0){
         if ($('.r'+(row+2)+'.c'+col+'.'+player).length>0){
+          nearWin = 2;
           if ($('.r'+(row+3)+'.c'+col+'.'+player).length>0){
             winner(player);
           }
@@ -220,6 +227,7 @@ $('#backToMenu').click(function(){
     function checkUR(row,col,player){
       if ($('.r'+(row-1)+'.c'+(col+1)+'.'+player).length>0){
         if ($('.r'+(row-2)+'.c'+(col+2)+'.'+player).length>0){
+          nearWin = 3;
           if ($('.r'+(row-3)+'.c'+(col+3)+'.'+player).length>0){
             winner(player);
           }
@@ -230,6 +238,7 @@ $('#backToMenu').click(function(){
     function checkUL(row,col,player){
       if ($('.r'+(row-1)+'.c'+(col-1)+'.'+player).length>0){
         if ($('.r'+(row-2)+'.c'+(col-2)+'.'+player).length>0){
+          nearWin = 1;
           if ($('.r'+(row-3)+'.c'+(col-3)+'.'+player).length>0){
             winner(player);
           }
@@ -240,6 +249,7 @@ $('#backToMenu').click(function(){
     function checkDR(row,col,player){
       if ($('.r'+(row+1)+'.c'+(col+1)+'.'+player).length>0){
         if ($('.r'+(row+2)+'.c'+(col+2)+'.'+player).length>0){
+          nearWin = 3;
           if ($('.r'+(row+3)+'.c'+(col+3)+'.'+player).length>0){
             winner(player);
           }
@@ -250,6 +260,7 @@ $('#backToMenu').click(function(){
     function checkDL(row,col,player){
       if ($('.r'+(row+1)+'.c'+(col-1)+'.'+player).length>0){
         if ($('.r'+(row+2)+'.c'+(col-2)+'.'+player).length>0){
+          nearWin = 1;
           if ($('.r'+(row+3)+'.c'+(col-3)+'.'+player).length>0){
             winner(player);
           }
@@ -257,18 +268,42 @@ $('#backToMenu').click(function(){
       }
     }
 
-    function aiMove(){
-
-
+    function aiMove(lastRow,lastCol,lastPlayer){
       var aiCol = Math.ceil(Math.random()*7.07);
       var colCounter = $('.black.c'+aiCol).length + $('.red.c'+aiCol).length;
       var aiRow = 6 - colCounter;
       var player = turn % 2 === 1 ? 'red' : 'black';
 
-      console.log(colCounter);
-      $('.r'+aiRow+'.c'+aiCol).addClass(player);
+      if (aiSkill > 1) {
+        nearWin=false;
+        checkWinner(lastRow,lastCol,lastPlayer);
+        if (nearWin>0){
+          aiCol = calculate(lastCol);
+          colCounter = $('.black.c'+aiCol).length + $('.red.c'+aiCol).length;
+          aiRow = 6 - colCounter;
+          
+          $('.r'+aiRow+'.c'+aiCol).addClass(player);
+        }else{
+        $('.r'+aiRow+'.c'+aiCol).addClass(player);
+        }
+      }
 
+      $('.r'+aiRow+'.c'+aiCol).addClass(player);
       checkWinner(aiRow,Number(aiCol),player);
       turn ++;
       nextTurn();
+    }
+
+    function calculate(col){
+
+      if (nearWin===1) {
+        col ++;
+      }else if(nearWin===2) {
+        col = col;
+      }else{
+        col --;
+      }
+
+      console.log(col);
+      return col;
     }

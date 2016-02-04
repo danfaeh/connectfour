@@ -117,7 +117,7 @@ label{
   width: 50em;
   height: 35em;
   /*background-color: ;*/
-  margin: 60px auto;
+  margin: 110px auto;
 }
 
 #playerTurn {
@@ -148,4 +148,8 @@ label{
   padding: 14px;
   background-color: lightgreen;
   color: black;
+}
+
+#skillLabel {
+  margin-bottom: -30px;
 }
