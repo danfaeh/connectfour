@@ -7,6 +7,11 @@ var blackWins=0;
 var nearWin=0;
 var aiSkill=0;
 
+// $('tbody').on('mouseover', function(){
+//    ///
+// });
+
+
 // human listener
 $('#human').click(function(){
   $('#menu1').hide();
@@ -60,10 +65,6 @@ $('#backToMenu').click(function(){
   blackWins=0;
   menu();
 });
-
-// $('tbody').on('mouseover', function(){
-//   ///
-// });
 
   function menu(){
     $('#game').hide();
@@ -295,7 +296,6 @@ $('#backToMenu').click(function(){
     }
 
     function calculate(col){
-
       if (nearWin===1) {
         col ++;
       }else if(nearWin===2) {
@@ -303,7 +303,5 @@ $('#backToMenu').click(function(){
       }else{
         col --;
       }
-
-      console.log(col);
       return col;
     }
