@@ -1,5 +1,7 @@
 window.onload = menu;
 
+// this is a test for animations.
+
 var aiLock=0;
 var lock = 0;
 var redWins=0;
