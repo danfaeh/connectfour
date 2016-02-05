@@ -198,7 +198,9 @@ $('#backToMenu').click(function(){
       nextTurn();
 
     if (aiLock===1 && lock ===0){
-      setTimeout(aiMove(row,Number(col[1]),player),2000);
+      setTimeout(function () {
+        aiMove(row,Number(col[1]),player);
+      } ,2000);
     }
   }
 
