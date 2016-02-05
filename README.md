@@ -8,22 +8,18 @@
 
 ###win logic
 
-![picture alt](http://imgur.com/NP69n01)
-
-'function checkLeft(row,col,player){'
-' if ($('.r'+row+'.c'+(col-1)+'.'+player).length>0){'
-'    if ($('.r'+row+'.c'+(col-2)+'.'+player).length>0){'
-'      nearWin = 1;'
-'      if ($('.r'+row+'.c'+(col-3)+'.'+player).length>0){'
-'        winner(player);'
-'      }'
-'    }'
-'  }'
-' }'
+![picture alt](Snippet.png)
 
 ##Motivation
 
  I've always like strategy games, and this one is one of my favorites.
+
+ ##Technology
+
+ *HTML
+ *Javascript
+ *Jquery
+ *Css
 
 ##Installation
 
@@ -31,6 +27,10 @@
 2. clone to local
 3. open index.html
 4. $$$
+
+html is in index.html
+app is in app.js
+css is in style.css
 
 Or visit the url [here!](http://exporter-tiger-32220.bitballoon.com/)
 
