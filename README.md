@@ -8,6 +8,8 @@
 
 ###win logic
 
+![picture alt](http://imgur.com/NP69n01)
+
 'function checkLeft(row,col,player){'
 ' if ($('.r'+row+'.c'+(col-1)+'.'+player).length>0){'
 '    if ($('.r'+row+'.c'+(col-2)+'.'+player).length>0){'
