@@ -22,6 +22,10 @@
  - Jquery
  - Css
 
+##Link
+
+Play the game online [here!](http://exporter-tiger-32220.bitballoon.com/)
+
 ##Installation
 
 1. fork the lab on github
@@ -32,8 +36,6 @@
  * html is in index.html
  * app is in app.js
  * css is in style.css
-
-Or visit the url [here!](http://exporter-tiger-32220.bitballoon.com/)
 
 ##Contributors
  1. Ben
