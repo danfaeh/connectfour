@@ -43,6 +43,7 @@ label{
   margin: 0 auto 25px auto;
   display: block;
 }
+
  input{
   height: 40px;
   width: 125px;
@@ -102,7 +103,7 @@ label{
   width: 36em;
   height: 31em;
   background: #FFD700;
-  margin: 80px auto;
+  margin: 0 auto;
   padding: 20px;
 }
 
@@ -116,7 +117,6 @@ label{
 .menu{
   width: 50em;
   height: 35em;
-  /*background-color: ;*/
   margin: 110px auto;
 }
 
@@ -152,4 +152,17 @@ label{
 
 #skillLabel {
   margin-bottom: -30px;
+}
+
+#hoverTable {
+  width: 36em;
+  height: 66px;
+  margin: 30px auto 0 auto;
+  padding: 0 20px;
+}
+
+#hoverRow > td {
+  border: 0;
+  margin-left: 5px;
+  background-color: transparent;
 }

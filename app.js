@@ -1,18 +1,11 @@
 window.onload = menu;
 
-// this is a test for animations.
-
 var aiLock=0;
 var lock = 0;
 var redWins=0;
 var blackWins=0;
 var nearWin=0;
 var aiSkill=0;
-
-// $('tbody').on('mouseover', function(){
-//    ///
-// });
-
 
 // human listener
 $('#human').click(function(){
@@ -91,15 +84,53 @@ $('#backToMenu').click(function(){
       $('#redWins').html('<br/>'+$redPlayer+' : <br/>'+redWins);
     }
 
+    for (var k=1; k<8; k++) {
+      $('#hoverRow').append('<td class="r0 '+k+'"></td>');
+    }
+
     for (i=1; i<7;i++){
       for(j=1;j<8;j++){
         $('#row'+i).append('<td class="r'+i+' c'+j+'"></td>');
       }
     }
+
+      $('.c1').click(function(){
+        lock === 0 ? addPiece('c1') : null;
+      });
+
+      $('.c2').click(function(){
+        lock === 0 ? addPiece('c2') : null;
+      });
+
+      $('.c3').click(function(){
+        lock === 0 ? addPiece('c3') : null;
+      });
+
+      $('.c4').click(function(){
+        lock === 0 ? addPiece('c4') : null;
+      });
+
+      $('.c5').click(function(){
+        lock === 0 ? addPiece('c5') : null;
+      });
+
+      $('.c6').click(function(){
+        lock === 0 ? addPiece('c6') : null;
+      });
+
+      $('.c7').click(function(){
+        lock === 0 ? addPiece('c7') : null;
+      }); 
+
+      hoverListeners("black"); 
   }
 
   function clearBoard(){
-    for (i=1; i<7;i++){
+    for(var k=1;k<8;k++){
+      $('.r0.'+k).remove();
+    }
+
+    for (var i=1; i<7;i++){
       for(j=1;j<8;j++){
         $('.r'+i+'.c'+j).remove();
       }
@@ -110,7 +141,9 @@ $('#backToMenu').click(function(){
     if (aiLock === 1) {
       $("#playerTurn").html($humanPlayer+"'s Turn");
       turn = 2;
-    } else {
+      hoverListeners(); 
+    } 
+    else {
       if (Math.random() > 0.5) {
         $("#playerTurn").html($blackPlayer+"'s Turn");
         turn = 2;
@@ -118,7 +151,13 @@ $('#backToMenu').click(function(){
         $("#playerTurn").html($redPlayer+"'s Turn");
         turn = 3;
       }
+      player = turn % 2 === 1 ? $redPlayer : $blackPlayer;
+      hoverListeners(player); 
     } 
+
+    
+
+    // clickListeners();
   }
 
   function resetGame(){
@@ -139,6 +178,9 @@ $('#backToMenu').click(function(){
       player = turn % 2 === 1 ? $redPlayer : $blackPlayer;
       $("#playerTurn").html(player+"'s Turn");
     }
+
+    hoverListeners(player);
+    // clickListeners(); 
   }
 
   function addPiece(col){
@@ -171,11 +213,7 @@ $('#backToMenu').click(function(){
     checkDL(row,col,player);
   }
 
-    function winner(player){
-      // if (aiThink===1){
-      //   console.log('aithink');
-      // }     
-
+    function winner(player){ 
         if (player=== 'black'){
           blackWins ++;
             $('#blackWins').html('<br/>'+$blackPlayer+' : <br/>'+blackWins);
@@ -307,3 +345,61 @@ $('#backToMenu').click(function(){
       }
       return col;
     }
+
+    function hoverListeners(player) {
+      var color;
+      if (aiLock===0){
+        color = player === $blackPlayer  ? "black" : "red";
+      }else{
+        color="black";
+      }
+
+      $('.c1').hover(function(){
+        $('.r0.1').css("background-color",color);
+      },function(){
+        $('.r0.1').css("background-color","transparent");
+      });
+
+      $('.c2').hover(function(){
+        $('.r0.2').css("background-color",color);
+      },function(){
+        $('.r0.2').css("background-color","transparent");
+      });
+
+      $('.c3').hover(function(){
+        $('.r0.3').css("background-color",color);
+      },function(){
+        $('.r0.3').css("background-color","transparent");
+      });
+
+      $('.c4').hover(function(){
+        $('.r0.4').css("background-color",color);
+      },function(){
+        $('.r0.4').css("background-color","transparent");
+      });
+
+      $('.c5').hover(function(){
+        $('.r0.5').css("background-color",color);
+      },function(){
+        $('.r0.5').css("background-color","transparent");
+      });
+
+      $('.c6').hover(function(){
+        $('.r0.6').css("background-color",color);
+      },function(){
+        $('.r0.6').css("background-color","transparent");
+      });
+
+      $('.c7').hover(function(){
+        $('.r0.7').css("background-color",color);
+      },function(){
+        $('.r0.7').css("background-color","transparent");
+      });      
+    }
+
+    // function clickListeners() {
+
+  
+
+    // }
+
