@@ -151,7 +151,7 @@ label{
 }
 
 #skillLabel {
-  margin-bottom: -30px;
+  margin-bottom: 0px;
 }
 
 #hoverTable {
@@ -165,4 +165,12 @@ label{
   border: 0;
   margin-left: 5px;
   background-color: transparent;
+}
+
+.label {
+    display: block;
+    top: -33px;
+    left: 20px;
+    position: relative;
+    margin-bottom: -5px;
 }
