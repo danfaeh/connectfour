@@ -211,6 +211,14 @@ $('#backToMenu').click(function(){
     checkUL(row,col,player);
     checkDR(row,col,player);
     checkDL(row,col,player);
+
+    //checking middles
+    checkLR1(row,col,player);
+    checkLR2(row,col,player);
+    checkURDL1(row,col,player);
+    checkURDL2(row,col,player);
+    checkULDR1(row,col,player);
+    checkULDR2(row,col,player);
   }
 
     function winner(player){ 
@@ -303,6 +311,72 @@ $('#backToMenu').click(function(){
         if ($('.r'+(row+2)+'.c'+(col-2)+'.'+player).length>0){
           nearWin = 1;
           if ($('.r'+(row+3)+'.c'+(col-3)+'.'+player).length>0){
+            winner(player);
+          }
+        }
+      }
+    }
+
+    function checkLR1(row,col,player){
+      if ($('.r'+row+'.c'+(col-1)+'.'+player).length>0){
+        if ($('.r'+row+'.c'+(col+1)+'.'+player).length>0){
+          nearWin = 1;
+          if ($('.r'+row+'.c'+(col+2)+'.'+player).length>0){
+            winner(player);
+          }
+        }
+      }
+    }
+
+    function checkLR2(row,col,player){
+      if ($('.r'+row+'.c'+(col+1)+'.'+player).length>0){
+        if ($('.r'+row+'.c'+(col-1)+'.'+player).length>0){
+          nearWin = 1;
+          if ($('.r'+row+'.c'+(col-2)+'.'+player).length>0){
+            winner(player);
+          }
+        }
+      }
+    }
+
+    function checkURDL1(row,col,player){
+      if ($('.r'+(row+1)+'.c'+(col-1)+'.'+player).length>0){
+        if ($('.r'+(row+2)+'.c'+(col-2)+'.'+player).length>0){
+          nearWin = 1;
+          if ($('.r'+(row-1)+'.c'+(col+1)+'.'+player).length>0){
+            winner(player);
+          }
+        }
+      }
+    }
+
+    function checkURDL2(row,col,player){
+      if ($('.r'+(row+1)+'.c'+(col-1)+'.'+player).length>0){
+        if ($('.r'+(row-1)+'.c'+(col+1)+'.'+player).length>0){
+          nearWin = 1;
+          if ($('.r'+(row-2)+'.c'+(col+2)+'.'+player).length>0){
+            winner(player);
+          }
+        }
+      }
+    }
+
+    function checkULDR1(row,col,player){
+      if ($('.r'+(row-1)+'.c'+(col-1)+'.'+player).length>0){
+        if ($('.r'+(row-2)+'.c'+(col-2)+'.'+player).length>0){
+          nearWin = 1;
+          if ($('.r'+(row+1)+'.c'+(col+1)+'.'+player).length>0){
+            winner(player);
+          }
+        }
+      }
+    }
+
+    function checkULDR2(row,col,player){
+      if ($('.r'+(row-1)+'.c'+(col-1)+'.'+player).length>0){
+        if ($('.r'+(row+1)+'.c'+(col+1)+'.'+player).length>0){
+          nearWin = 1;
+          if ($('.r'+(row+2)+'.c'+(col+2)+'.'+player).length>0){
             winner(player);
           }
         }
