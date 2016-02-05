@@ -6,9 +6,9 @@
 
 ##Code Example:
 
-##win condition logic
+###win logic
 
-function checkLeft(row,col,player){
+'function checkLeft(row,col,player){
   if ($('.r'+row+'.c'+(col-1)+'.'+player).length>0){
     if ($('.r'+row+'.c'+(col-2)+'.'+player).length>0){
       nearWin = 1;
@@ -17,7 +17,7 @@ function checkLeft(row,col,player){
       }
     }
   }
- }
+ }'
 
 ##Motivation
 
@@ -29,6 +29,8 @@ function checkLeft(row,col,player){
 2. clone to local
 3. open index.html
 4. $$$
+
+Or visit the url [here!](http://exporter-tiger-32220.bitballoon.com/)
 
 ##Contributors
 
