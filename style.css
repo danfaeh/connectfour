@@ -167,7 +167,7 @@ label{
   background-color: transparent;
 }
 
-.label {
+form > .label {
     display: block;
     top: -33px;
     left: 20px;
