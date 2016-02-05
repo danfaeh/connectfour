@@ -17,10 +17,10 @@
 
 ##Technology
 
- -HTML
- -Javascript
- -Jquery
- -Css
+ - HTML
+ - Javascript
+ - Jquery
+ - Css
 
 ##Installation
 
@@ -29,16 +29,16 @@
 3. open index.html
 4. $$$
 
- -html is in index.html
- -app is in app.js
- -css is in style.css
+ * html is in index.html
+ * app is in app.js
+ * css is in style.css
 
 Or visit the url [here!](http://exporter-tiger-32220.bitballoon.com/)
 
 ##Contributors
- 1.Ben
- 2.Alex
- 3.Ilias
+ 1. Ben
+ 2. Alex
+ 3. Ilias
 
  you guys helped alot, thank you.
 
