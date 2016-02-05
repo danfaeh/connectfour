@@ -8,16 +8,16 @@
 
 ###win logic
 
-'function checkLeft(row,col,player){
-  if ($('.r'+row+'.c'+(col-1)+'.'+player).length>0){
-    if ($('.r'+row+'.c'+(col-2)+'.'+player).length>0){
-      nearWin = 1;
-      if ($('.r'+row+'.c'+(col-3)+'.'+player).length>0){
-        winner(player);
-      }
-    }
-  }
- }'
+'function checkLeft(row,col,player){'
+' if ($('.r'+row+'.c'+(col-1)+'.'+player).length>0){'
+'    if ($('.r'+row+'.c'+(col-2)+'.'+player).length>0){'
+'      nearWin = 1;'
+'      if ($('.r'+row+'.c'+(col-3)+'.'+player).length>0){'
+'        winner(player);'
+'      }'
+'    }'
+'  }'
+' }'
 
 ##Motivation
 
